@@ -1,0 +1,12 @@
+{
+  "afterIssuance": {
+    "alice": { "status": "valid", "proofVerifies": true, "inPool": true },
+    "mallory": { "status": "valid", "proofVerifies": true, "inPool": true },
+    "carol": { "status": "declined", "proofVerifies": false, "inPool": false }
+  },
+  "afterRevocation": {
+    "alice": { "status": "valid", "proofVerifies": true, "inPool": true },
+    "mallory": { "status": "revoked", "proofVerifies": false, "inPool": false },
+    "carol": { "status": "declined", "proofVerifies": false, "inPool": false }
+  }
+}

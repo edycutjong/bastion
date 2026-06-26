@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512"
+     role="img" aria-labelledby="t d" onclick="togglePause()" style="cursor:pointer">
+  <title id="t">Bastion</title>
+  <desc id="d">ZK fortress shield — a luminous proof-core pulses behind a hex shield while force-field rings emanate outward, a revocation sentinel orbits the perimeter, and target-lock brackets stand guard. Click to pause.</desc>
+  <script><![CDATA[
+    var paused=false;
+    function togglePause(){var s=document.querySelector('svg');if(paused){s.unpauseAnimations();paused=false;}else{s.pauseAnimations();paused=true;}}
+  ]]></script>
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="75%">
+      <stop offset="0%" stop-color="#052015"/>
+      <stop offset="60%" stop-color="#020e0a"/>
+      <stop offset="100%" stop-color="#020617"/>
+      <animate attributeName="cx" values="50%;56%;44%;50%" dur="10s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="42%;48%;36%;42%" dur="10s" repeatCount="indefinite"/>
+    </radialGradient>
+    <linearGradient id="brandLive" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22C55E">
+        <animate attributeName="stop-color" values="#22C55E;#10b981;#06B6D4;#22C55E" dur="7s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="100%" stop-color="#06B6D4">
+        <animate attributeName="stop-color" values="#06B6D4;#22C55E;#10b981;#06B6D4" dur="7s" repeatCount="indefinite"/>
+      </stop>
+    </linearGradient>
+    <radialGradient id="core" cx="50%" cy="42%" r="62%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="35%" stop-color="#5eead4"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </radialGradient>
+    <filter id="neon" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="6" result="b1"/>
+      <feGaussianBlur stdDeviation="18" result="b2"/>
+      <feMerge><feMergeNode in="b2"/><feMergeNode in="b1"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#ffffff" stroke-opacity="0.03" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Backdrop -->
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <rect width="512" height="512" rx="112" fill="url(#grid)" opacity="0.85"/>
+
+  <!-- Sweeping cyber scanline -->
+  <line x1="0" y1="-10" x2="512" y2="-10" stroke="#06B6D4" stroke-width="1.8" opacity="0.12" filter="url(#neon)">
+    <animate attributeName="y1" values="-10;522;-10" dur="6s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"/>
+    <animate attributeName="y2" values="-10;522;-10" dur="6s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"/>
+  </line>
+
+  <!-- Ambient breathing glow behind shield -->
+  <ellipse cx="256" cy="256" rx="150" ry="150" fill="#22C55E" filter="url(#soft)" opacity="0.18">
+    <animate attributeName="opacity" values="0.10;0.26;0.10" dur="4s" repeatCount="indefinite"
+      calcMode="spline" keyTimes="0;0.5;1" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+  </ellipse>
+
+  <!-- Translating group to prevent coordinate-drift -->
+  <g transform="translate(256, 256)">
+
+    <!-- Emanating force-field hex rings -->
+    <g fill="none" stroke="url(#brandLive)" stroke-width="4" stroke-linejoin="round" vector-effect="non-scaling-stroke">
+      <polygon points="0,-130 113,-65 113,65 0,130 -113,65 -113,-65">
+        <animateTransform attributeName="transform" type="scale" values="0.42;1.12" dur="3s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0.2 0.6 0.3 1"/>
+        <animate attributeName="opacity" values="0.65;0" dur="3s" begin="0s" repeatCount="indefinite"/>
+      </polygon>
+      <polygon points="0,-130 113,-65 113,65 0,130 -113,65 -113,-65">
+        <animateTransform attributeName="transform" type="scale" values="0.42;1.12" dur="3s" begin="1s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0.2 0.6 0.3 1"/>
+        <animate attributeName="opacity" values="0.65;0" dur="3s" begin="1s" repeatCount="indefinite"/>
+      </polygon>
+      <polygon points="0,-130 113,-65 113,65 0,130 -113,65 -113,-65">
+        <animateTransform attributeName="transform" type="scale" values="0.42;1.12" dur="3s" begin="2s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0.2 0.6 0.3 1"/>
+        <animate attributeName="opacity" values="0.65;0" dur="3s" begin="2s" repeatCount="indefinite"/>
+      </polygon>
+    </g>
+
+    <!-- Slow-rotating dashed perimeter watch -->
+    <g>
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="26s" repeatCount="indefinite"/>
+      <polygon points="0,-160 135,-82 135,74 0,152 -135,74 -135,-82" fill="none" stroke="#22C55E" stroke-width="2"
+        stroke-dasharray="10 12" opacity="0.35"/>
+    </g>
+
+    <!-- Hex shield -->
+    <g filter="url(#neon)">
+      <polygon points="0,-140 120,-71 120,67 0,136 -120,67 -120,-71" fill="none" stroke="url(#brandLive)"
+        stroke-width="10" stroke-linejoin="round">
+        <animate attributeName="opacity" values="0.85;1;0.85" dur="2.4s" repeatCount="indefinite"
+          calcMode="spline" keyTimes="0;0.5;1" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+      </polygon>
+    </g>
+
+    <!-- Target-lock corner brackets (slide inward dynamically) -->
+    <g stroke="#06B6D4" stroke-width="7" fill="none" stroke-linecap="round" filter="url(#neon)">
+      <animate attributeName="stroke-opacity" values="0.9;0.35;0.9" dur="2.2s" repeatCount="indefinite"/>
+      <!-- Top-Left -->
+      <g>
+        <animateTransform attributeName="transform" type="translate" values="-7,-7; 0,0; -7,-7" dur="2.4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.4 0 0.6 1; 0.4 0 0.6 1"/>
+        <path d="M -160 -106 L -160 -160 L -106 -160"/>
+      </g>
+      <!-- Top-Right -->
+      <g>
+        <animateTransform attributeName="transform" type="translate" values="7,-7; 0,0; 7,-7" dur="2.4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.4 0 0.6 1; 0.4 0 0.6 1"/>
+        <path d="M 106 -160 L 160 -160 L 160 -106"/>
+      </g>
+      <!-- Bottom-Left -->
+      <g>
+        <animateTransform attributeName="transform" type="translate" values="-7,7; 0,0; -7,7" dur="2.4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.4 0 0.6 1; 0.4 0 0.6 1"/>
+        <path d="M -160 106 L -160 160 L -106 160"/>
+      </g>
+      <!-- Bottom-Right -->
+      <g>
+        <animateTransform attributeName="transform" type="translate" values="7,7; 0,0; 7,7" dur="2.4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.4 0 0.6 1; 0.4 0 0.6 1"/>
+        <path d="M 106 160 L 160 160 L 160 106"/>
+      </g>
+    </g>
+
+    <!-- Outer core lock hex (reverse rotates around ZK proof core) -->
+    <g>
+      <animateTransform attributeName="transform" type="rotate" from="360" to="0" dur="10s" repeatCount="indefinite"/>
+      <polygon points="0,-64 55,-32 55,32 0,64 -55,32 -55,-32" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-dasharray="8 6" opacity="0.65"/>
+    </g>
+
+    <!-- Luminous ZK proof-core (diamond) -->
+    <g filter="url(#neon)">
+      <g>
+        <animateTransform attributeName="transform" type="scale" values="1;1.12;1" dur="1.8s" repeatCount="indefinite"
+          calcMode="spline" keyTimes="0;0.5;1" keySplines="0.34 1.56 0.64 1;0.4 0 0.6 1"/>
+        <polygon points="0,-46 48,0 0,46 -48,0" fill="url(#core)"/>
+      </g>
+      <polygon points="0,-22 24,0 0,22 -24,0" fill="#ffffff" opacity="0.95">
+        <animate attributeName="opacity" values="0.6;1;0.6" dur="1.8s" repeatCount="indefinite"/>
+      </polygon>
+    </g>
+
+    <!-- Orbiting revocation sentinel with a trailing companion comet dot -->
+    <!-- Trail Dot -->
+    <circle r="5.5" fill="#22C55E" opacity="0.6" filter="url(#neon)">
+      <animateMotion dur="7s" begin="-0.1s" repeatCount="indefinite" rotate="auto"
+        path="M 0 -140 L 120 -71 L 120 67 L 0 136 L -120 67 L -120 -71 Z"/>
+    </circle>
+    <!-- Main Dot -->
+    <circle r="8" fill="#ffffff" filter="url(#neon)">
+      <animateMotion dur="7s" repeatCount="indefinite" rotate="auto"
+        path="M 0 -140 L 120 -71 L 120 67 L 0 136 L -120 67 L -120 -71 Z"/>
+      <animate attributeName="r" values="6;9;6" dur="1.4s" repeatCount="indefinite"/>
+    </circle>
+
+  </g>
+</svg>

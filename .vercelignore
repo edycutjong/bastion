@@ -1,0 +1,8 @@
+# The Rust/Odra contract is built + deployed separately — Vercel only needs the Next.js app.
+contract
+node_modules
+.next
+.vercel
+e2e
+*.wasm
+*.pem

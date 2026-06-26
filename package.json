@@ -1,0 +1,70 @@
+{
+  "name": "bastion",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "audit": "pnpm audit --audit-level=high",
+    "ci": "pnpm run audit || true && pnpm run lint && pnpm run typecheck && pnpm run test:coverage",
+    "ci:full": "pnpm run ci && pnpm run build && pnpm run e2e",
+    "e2e": "npx playwright test",
+    "e2e:ui": "npx playwright test --ui",
+    "lighthouse": "npx lhci autorun",
+    "seed": "tsx scripts/seed.ts",
+    "risk:trigger": "tsx scripts/trigger_risk.ts",
+    "scan:pii": "tsx scripts/scan_pii.ts",
+    "x402:query": "tsx scripts/x402_query.ts",
+    "zk:prove": "tsx scripts/zk_prove.ts",
+    "bench": "tsx scripts/bench.ts",
+    "check:submission": "tsx scripts/check_submission_readiness.ts",
+    "lifecycle": "tsx scripts/run_lifecycle.ts",
+    "deploy:rpc": "tsx scripts/deploy_rpc.ts",
+    "contract:build": "cd contract && cp .cargo/config.wasm.toml .cargo/config.toml && (cargo odra build && wasm-opt wasm/Bastion.wasm --llvm-memory-copy-fill-lowering --signext-lowering -O2 -o wasm/Bastion.wasm; status=$?; rm -f .cargo/config.toml; exit $status)",
+    "contract:deploy": "cd contract && cargo run --bin bastion_livenet --features livenet",
+    "contract:test": "cd contract && cargo test"
+  },
+  "dependencies": {
+    "casper-js-sdk": "^5.0.12",
+    "ethers": "^6",
+    "next": "16.2.9",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.5",
+    "@lhci/cli": "^0.14.0",
+    "@playwright/test": "^1.52.0",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitest/coverage-v8": "^4.1.8",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.9",
+    "tailwindcss": "^4",
+    "tsx": "^4.22.4",
+    "typescript": "^5",
+    "vitest": "^4.1.8"
+  },
+  "pnpm": {
+    "overrides": {
+      "tmp": "^0.2.6",
+      "js-yaml": "^4.2.0",
+      "cookie": "^0.7.0",
+      "esbuild": "^0.28.1",
+      "postcss": "^8.5.10",
+      "uuid": "^11.1.1",
+      "ws": "^8.21.0"
+    },
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
+}
