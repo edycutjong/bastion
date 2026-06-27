@@ -91,7 +91,10 @@ export async function insertCommitmentOnChain(input: {
     "insert_commitment",
     Args.fromMap({
       commitment: CLValue.newCLString(input.commitment),
-      attestation_sig: CLValue.newCLString(input.attestationSig),
+      // The deployed contract param is `_attestation_sig` (unused in the body, but Odra
+      // still exposes the literal identifier — incl. the leading underscore — as the
+      // required runtime arg name). Sending `attestation_sig` reverts with MissingArg.
+      _attestation_sig: CLValue.newCLString(input.attestationSig),
       new_root: CLValue.newCLString(input.newRoot),
     }),
   );

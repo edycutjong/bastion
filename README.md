@@ -27,11 +27,42 @@
 
 ## 📸 See it in Action
 
+> **Privacy-preserving compliance, enforced on-chain.** Holders prove set-membership + non-revocation with a Groth16-**shaped** proof (PII never leaves the device); the Odra contract registers commitments and revoked nullifiers on Casper Testnet; an autonomous monitor revokes the moment a risk event fires.
+
+### 1. Dashboard Overview
 <div align="center">
-  <img src="public/og-image.png" alt="Bastion Demo" width="100%">
+  <img src="docs/screenshots/01-initial-dashboard.png" alt="Bastion Dashboard Overview" width="100%">
 </div>
 
-> **Privacy-preserving compliance, enforced on-chain.** Holders prove set-membership + non-revocation with a Groth16-**shaped** proof (PII never leaves the device); the Odra contract registers commitments and revoked nullifiers on Casper Testnet; an autonomous monitor revokes the moment a risk event fires.
+*The main security console showing the on-chain Merkle root, autonomous monitoring agent status, and active credential holders.*
+
+### 2. Compliance Console & ZK Proofs
+<div align="center">
+  <img src="docs/screenshots/02-compliance-console.png" alt="Compliance Console" width="100%">
+</div>
+
+*The interactive panel displaying the credential holder list, where users can trigger verification and inspect compliance.*
+
+### 3. ZK Proof Trace Details
+<div align="center">
+  <img src="docs/screenshots/03-zk-proof-trace-alice.png" alt="ZK Proof Trace Details" width="100%">
+</div>
+
+*Expanding a holder's card exposes their cryptographic details (commitment leaf hash, nullifier, and target Merkle root) verifying their compliance privately.*
+
+### 4. Autonomous Revocation & Risk Signal
+<div align="center">
+  <img src="docs/screenshots/04-ofac-hit-triggered.png" alt="Autonomous Revocation" width="100%">
+</div>
+
+*Triggering a simulated OFAC hit on Mallory. The monitor agent instantly detects the risk event, pushes a revocation transaction to Casper, and Mallory is ejected from the pool.*
+
+### 5. Resetted State
+<div align="center">
+  <img src="docs/screenshots/05-resetted.png" alt="Resetted State" width="100%">
+</div>
+
+*The dashboard after reset, restoring the initial state for the next demonstration run.*
 
 ---
 
@@ -112,10 +143,16 @@ flowchart TD
 | Item | Value |
 |---|---|
 | **Bastion Contract** | [`hash-d247c7118d240bb339612f176f23816aa7a42e3bce88b132cad9982707c4a2c0`](https://testnet.cspr.live/contract-package/d247c7118d240bb339612f176f23816aa7a42e3bce88b132cad9982707c4a2c0) |
+| **Install Transaction** | [`6632ffec189f76cdf4dd8d057642160cac3608b98bd0477e6cc540319c6c0f22`](https://testnet.cspr.live/transaction/6632ffec189f76cdf4dd8d057642160cac3608b98bd0477e6cc540319c6c0f22) |
+| **`insert_commitment` (admit a holder)** | [`1b65887722fa960437e10f1e497ac3837934e645d153e9268d79190b2beebb27`](https://testnet.cspr.live/transaction/1b65887722fa960437e10f1e497ac3837934e645d153e9268d79190b2beebb27) |
+| **`revoke` (autonomous revocation)** | [`89db2b3bc80c2e95966e82456ad6f2a3fe6c49a6ce3cc47155f9e44dbf50b7cc`](https://testnet.cspr.live/transaction/89db2b3bc80c2e95966e82456ad6f2a3fe6c49a6ce3cc47155f9e44dbf50b7cc) |
 | **CEP-18 Token (x402)** | [`hash-541069ed8cad06249f76edb0972932d012badbb256111d3000df06ac1d703be6`](https://testnet.cspr.live/contract-package/541069ed8cad06249f76edb0972932d012badbb256111d3000df06ac1d703be6) |
 | **Issuer Account** | [`01b9c7741b3679191aa4f82e5529e3f0908e3d5cbc9c3c352807e17b7c48bffc55`](https://testnet.cspr.live/account/01b9c7741b3679191aa4f82e5529e3f0908e3d5cbc9c3c352807e17b7c48bffc55) |
 | **Network** | Casper Testnet (`casper-test`) |
 | **Framework** | Odra (Rust → WASM, `target-cpu=mvp`) |
+| **Machine-readable record** | [`deployments/testnet.json`](deployments/testnet.json) |
+
+The full compliance lifecycle is a confirmed on-chain sequence: a holder is **admitted** (`insert_commitment`) then **autonomously revoked** (`revoke`) — both real, successful Testnet transactions. Reproduce with `pnpm deploy:rpc` (install) + `BASTION_DEMO=false pnpm tsx scripts/run_lifecycle.ts` (lifecycle).
 
 > **Re-deploy your own:** `pnpm deploy:rpc` installs a fresh contract instance and prints the package hash. See [LIVE_TESTNET.md](LIVE_TESTNET.md) for the full walkthrough.
 
@@ -138,7 +175,7 @@ The following design documents and resources are available in this repository:
 # ── Code Quality ────────────────────────────
 pnpm run lint          # ESLint
 pnpm run typecheck     # TypeScript check
-pnpm run test          # Run tests (95)
+pnpm run test          # Run tests (99)
 pnpm run test:coverage # Coverage report
 
 # ── Advanced Testing ────────────────────────
@@ -152,7 +189,7 @@ make security-scan     # pnpm audit + license check
 | Layer | Tool | Status |
 |---|---|---|
 | Code Quality | ESLint + TypeScript | ✅ |
-| Unit Testing | Vitest (95 tests) | ✅ |
+| Unit Testing | Vitest (99 tests) | ✅ |
 | E2E Testing | Playwright (3 suites) | ✅ |
 | Security (SAST) | CodeQL | ✅ |
 | Security (SCA) | Dependabot + npm audit | ✅ |
