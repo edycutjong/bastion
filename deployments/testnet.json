@@ -1,0 +1,20 @@
+{
+  "network": "casper-test",
+  "contractPackageHash": "hash-d247c7118d240bb339612f176f23816aa7a42e3bce88b132cad9982707c4a2c0",
+  "cep18TokenPackageHash": "hash-541069ed8cad06249f76edb0972932d012badbb256111d3000df06ac1d703be6",
+  "issuerAccount": "01b9c7741b3679191aa4f82e5529e3f0908e3d5cbc9c3c352807e17b7c48bffc55",
+  "deployedAt": "2026-06-24",
+  "transactions": {
+    "install": "6632ffec189f76cdf4dd8d057642160cac3608b98bd0477e6cc540319c6c0f22",
+    "insert_commitment": "1b65887722fa960437e10f1e497ac3837934e645d153e9268d79190b2beebb27",
+    "revoke": "89db2b3bc80c2e95966e82456ad6f2a3fe6c49a6ce3cc47155f9e44dbf50b7cc"
+  },
+  "explorerBase": "https://testnet.cspr.live/transaction/",
+  "notes": [
+    "Installed via the Odra livenet backend (cargo odra build → wasm/Bastion.wasm, lowered to MVP).",
+    "Contract calls target the contract PACKAGE (byPackageHash) — byHash on a package hash is rejected as an Invalid transaction.",
+    "Full compliance lifecycle (insert_commitment → revoke) broadcast + confirmed on-chain via scripts/run_lifecycle.ts with BASTION_DEMO=false: holder 'mallory' admitted then autonomously revoked.",
+    "insert_commitment(commitment, _attestation_sig, new_root) — the deployed param keeps its leading underscore, which Odra exposes as the literal runtime arg name; sending 'attestation_sig' reverts with MissingArg (Odra code 64658 = 64536 + 122).",
+    "revoke(nullifier, commitment, reason_code:u8, new_root) verified against contract/src/bastion.rs."
+  ]
+}
