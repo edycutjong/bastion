@@ -28,7 +28,12 @@ function keyAlgorithm(): KeyAlgorithm {
 }
 
 function loadSignerKey(): PrivateKey {
-  const pem = readFileSync(config.issuerKeyPath, "utf8");
+  let pem: string;
+  if (config.issuerKeyPath.includes("-----BEGIN")) {
+    pem = config.issuerKeyPath.replace(/\\n/g, "\n");
+  } else {
+    pem = readFileSync(config.issuerKeyPath, "utf8");
+  }
   return PrivateKey.fromPem(pem, keyAlgorithm());
 }
 
