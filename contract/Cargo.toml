@@ -2,7 +2,7 @@
 edition = "2021"
 name = "bastion"
 version = "1.3.0"
-repository = "https://github.com/edycutjong/bastian"
+repository = "https://github.com/edycutjong/bastion"
 
 [dependencies]
 odra = { version = "2.7.0", features = [], default-features = false }

@@ -4,12 +4,12 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/edycutjong/bastian.git"
+    "url": "git+https://github.com/edycutjong/bastion.git"
   },
   "bugs": {
-    "url": "https://github.com/edycutjong/bastian/issues"
+    "url": "https://github.com/edycutjong/bastion/issues"
   },
-  "homepage": "https://github.com/edycutjong/bastian#readme",
+  "homepage": "https://github.com/edycutjong/bastion#readme",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

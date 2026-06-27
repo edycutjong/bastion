@@ -16,10 +16,10 @@
   ![Next.js](https://img.shields.io/badge/Next.js_16-black?style=flat&logo=next.js)
   ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
   ![Casper](https://img.shields.io/badge/Casper_Network-FF0000?style=flat&logo=casper&logoColor=white)
-  [![Contracts](https://img.shields.io/badge/Contracts-Odra%2FRust-06b6d4?logo=rust&logoColor=white)](https://github.com/edycutjong/bastian/tree/main/contract)
-  [![ZK Engine](https://img.shields.io/badge/ZK--Engine-Groth16--Sim-purple)](https://github.com/edycutjong/bastian)
+  [![Contracts](https://img.shields.io/badge/Contracts-Odra%2FRust-06b6d4?logo=rust&logoColor=white)](https://github.com/edycutjong/bastion/tree/main/contract)
+  [![ZK Engine](https://img.shields.io/badge/ZK--Engine-Groth16--Sim-purple)](https://github.com/edycutjong/bastion)
   [![License](https://img.shields.io/badge/License-MIT-yellow)](https://opensource.org/licenses/MIT)
-  [![CI](https://github.com/edycutjong/bastian/actions/workflows/ci.yml/badge.svg)](https://github.com/edycutjong/bastian/actions/workflows/ci.yml)
+  [![CI](https://github.com/edycutjong/bastion/actions/workflows/ci.yml/badge.svg)](https://github.com/edycutjong/bastion/actions/workflows/ci.yml)
 
 </div>
 
@@ -94,7 +94,7 @@ flowchart TD
 - Rust & Cargo (only to rebuild the Odra contract)
 
 ### Installation
-1. Clone: `git clone https://github.com/edycutjong/bastian.git`
+1. Clone: `git clone https://github.com/edycutjong/bastion.git`
 2. Change directory: `cd bastion`
 3. Install: `pnpm install`
 4. Configure: `cp .env.example .env.local` and add your keys
