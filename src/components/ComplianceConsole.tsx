@@ -123,7 +123,7 @@ export function ComplianceConsole({ initialSnapshot }: { initialSnapshot: Snapsh
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
         <div className="min-w-0 rounded-lg p-4 glass-elevated">
           <p className="text-[10px] uppercase tracking-widest text-slate-500">On-chain Merkle root</p>
-          <p key={snapshot.root} className="mt-1 truncate font-mono text-xs text-cyan-400 animate-slideDown">
+          <p key={snapshot.root} className="mt-1 break-all font-mono text-xs text-cyan-400 animate-slideDown">
             {snapshot.root}
           </p>
           <p className="mt-1 text-[11px] text-slate-500">
@@ -158,8 +158,16 @@ export function ComplianceConsole({ initialSnapshot }: { initialSnapshot: Snapsh
                 nullifier published · root updated · ejected from pool.
               </p>
               {banner.revocationDeployHash && (
-                <p className="mt-1 truncate font-mono text-xs text-cyan-400">
-                  ⛓ revoke deploy/{banner.revocationDeployHash.slice(0, 30)}…
+                <p className="mt-1 font-mono text-xs text-cyan-400 break-all leading-normal">
+                  ⛓{" "}
+                  <a
+                    href={`https://testnet.cspr.live/transaction/${banner.revocationDeployHash.replace(/^0x/, "")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline hover:text-cyan-300 break-all"
+                  >
+                    revoke deploy/{banner.revocationDeployHash}
+                  </a>
                 </p>
               )}
             </div>
@@ -224,17 +232,17 @@ export function ComplianceConsole({ initialSnapshot }: { initialSnapshot: Snapsh
                       <div className="mt-2 space-y-1.5 font-mono text-[9px] text-slate-400 leading-normal animate-slideDown">
                         <div className="rounded bg-slate-950/40 p-1.5 border border-slate-800/40">
                           <span className="block text-[8px] text-slate-500 uppercase tracking-widest">Commitment Leaf:</span>
-                          <span className="block truncate text-cyan-500">{h.commitmentHash}</span>
+                          <span className="block break-all text-cyan-500">{h.commitmentHash}</span>
                         </div>
                         {h.nullifierHash && (
                           <div className="rounded bg-slate-950/40 p-1.5 border border-slate-800/40">
                             <span className="block text-[8px] text-slate-500 uppercase tracking-widest">Nullifier Hash:</span>
-                            <span className="block truncate text-amber-500">{h.nullifierHash}</span>
+                            <span className="block break-all text-amber-500">{h.nullifierHash}</span>
                           </div>
                         )}
                         <div className="rounded bg-slate-950/40 p-1.5 border border-slate-800/40">
                           <span className="block text-[8px] text-slate-500 uppercase tracking-widest">Root Hash:</span>
-                          <span className="block truncate text-green-500">{snapshot.root}</span>
+                          <span className="block break-all text-green-500">{snapshot.root}</span>
                         </div>
                       </div>
                     )}

@@ -24,8 +24,8 @@ export function SuiteFooter() {
         <p className="text-xs text-slate-600">
           All code original and newly developed for the Casper Agentic Buildathon 2026. Part of the{" "}
           <span className="text-slate-400">Vouch</span> suite:{" "}
-          <span className="text-slate-500">Conclave</span> (governance) · Verity (oracle) ·{" "}
-          <span className="text-slate-500">Bastion</span> (ZK compliance).
+          <span className="text-slate-500">Conclave</span> (governance) ·{" "}
+          <span className="text-slate-500">Verity</span> (oracle) · Bastion (ZK compliance).
         </p>
         <span className="shrink-0 rounded border border-slate-800 px-2 py-0.5 font-mono text-[10px] text-slate-500">
           v{version}
