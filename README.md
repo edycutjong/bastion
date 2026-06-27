@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="docs/icon.svg" alt="Bastion Logo" width="120">
+  <img src="docs/icon.svg" alt="Bastion Logo" width="144">
   <h1>Bastion 🔒</h1>
   <p><em>ZK compliance gateway for the Casper ecosystem</em></p>
   <img src="docs/readme-hero-animated.svg" alt="Bastion Hero" width="100%">
