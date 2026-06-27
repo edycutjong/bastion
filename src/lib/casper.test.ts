@@ -146,6 +146,25 @@ describe("casper chain layer", () => {
     }
   });
 
+  it("loads key directly from string if PEM block is provided in config", async () => {
+    const originalHash = config.contractHash;
+    const originalPath = config.issuerKeyPath;
+    (config as any).contractHash = "hash-contract";
+    (config as any).issuerKeyPath = "-----BEGIN PRIVATE KEY-----\nMOCK\n-----END PRIVATE KEY-----";
+
+    try {
+      const result = await insertCommitmentOnChain({
+        commitment: "0x123",
+        attestationSig: "0x456",
+        newRoot: "0x789",
+      });
+      expect(result.deployHash).toBe("deploy-hash-hex");
+    } finally {
+      (config as any).contractHash = originalHash;
+      (config as any).issuerKeyPath = originalPath;
+    }
+  });
+
   it("revokes on chain successfully", async () => {
     const originalHash = config.contractHash;
     (config as any).contractHash = "hash-contract";
