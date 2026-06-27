@@ -1,0 +1,10 @@
+# Casper VM accepts only MVP WebAssembly. Newer Rust enables bulk-memory + sign-ext by
+# default for wasm32-unknown-unknown (and ships precompiled core/alloc with them), which
+# Casper rejects ("Bulk memory operations are not supported"). Rebuild core/alloc from
+# source targeting the wasm MVP CPU. Final lowering is done by wasm-opt in `pnpm contract:build`.
+[unstable]
+build-std = ["core", "alloc"]
+build-std-features = ["compiler-builtins-mem"]
+
+[target.wasm32-unknown-unknown]
+rustflags = ["-C", "target-cpu=mvp"]

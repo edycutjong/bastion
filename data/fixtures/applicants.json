@@ -1,0 +1,38 @@
+[
+  {
+    "id": "alice",
+    "documents": {
+      "fullName": "Alice Nakamura",
+      "nationality": "JP",
+      "documentType": "passport",
+      "documentNumber": "TK7829341",
+      "expiryDate": "2029-03-15",
+      "isAuthentic": true
+    },
+    "expectedOutcome": "valid"
+  },
+  {
+    "id": "mallory",
+    "documents": {
+      "fullName": "Mallory Reeves",
+      "nationality": "US",
+      "documentType": "passport",
+      "documentNumber": "MR5501827",
+      "expiryDate": "2028-11-22",
+      "isAuthentic": true
+    },
+    "expectedOutcome": "valid"
+  },
+  {
+    "id": "carol",
+    "documents": {
+      "fullName": "Carol Dubois",
+      "nationality": "FR",
+      "documentType": "national_id",
+      "documentNumber": "EXPIRED-001",
+      "expiryDate": "2020-06-01",
+      "isAuthentic": false
+    },
+    "expectedOutcome": "declined"
+  }
+]

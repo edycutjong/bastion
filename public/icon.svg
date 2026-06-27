@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-labelledby="t d">
+  <title id="t">Bastion (Static)</title>
+  <desc id="d">ZK fortress shield — a luminous ZK proof-core behind a hex compliance shield ringed by a perimeter watch and target-lock brackets.</desc>
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="75%">
+      <stop offset="0%" stop-color="#06281b"/>
+      <stop offset="55%" stop-color="#03140e"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </radialGradient>
+    <linearGradient id="brandStatic" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22C55E"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+    <radialGradient id="core" cx="50%" cy="42%" r="62%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="35%" stop-color="#5eead4"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </radialGradient>
+    <filter id="neon" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="6" result="b1"/>
+      <feGaussianBlur stdDeviation="18" result="b2"/>
+      <feMerge><feMergeNode in="b2"/><feMergeNode in="b1"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#ffffff" stroke-opacity="0.03" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Backdrop -->
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <rect width="512" height="512" rx="112" fill="url(#grid)" opacity="0.85"/>
+
+  <!-- Ambient glow -->
+  <ellipse cx="256" cy="256" rx="150" ry="150" fill="#22C55E" filter="url(#soft)" opacity="0.14"/>
+
+  <!-- Translated static elements -->
+  <g transform="translate(256, 256)">
+
+    <!-- Dashed perimeter watch -->
+    <polygon points="0,-160 135,-82 135,74 0,152 -135,74 -135,-82" fill="none" stroke="#22C55E" stroke-width="2"
+      stroke-dasharray="10 12" opacity="0.35"/>
+
+    <!-- Hex shield -->
+    <g filter="url(#neon)">
+      <polygon points="0,-140 120,-71 120,67 0,136 -120,67 -120,-71" fill="none" stroke="url(#brandStatic)" stroke-width="10" stroke-linejoin="round" opacity="0.9"/>
+    </g>
+
+    <!-- Target-lock corner brackets -->
+    <g stroke="#06B6D4" stroke-width="7" fill="none" stroke-linecap="round" filter="url(#neon)" opacity="0.8">
+      <path d="M -160 -106 L -160 -160 L -106 -160"/>
+      <path d="M 106 -160 L 160 -160 L 160 -106"/>
+      <path d="M -160 106 L -160 160 L -106 160"/>
+      <path d="M 106 160 L 160 160 L 160 106"/>
+    </g>
+
+    <!-- Outer core lock hex -->
+    <polygon points="0,-64 55,-32 55,32 0,64 -55,32 -55,-32" fill="none" stroke="#22C55E" stroke-width="2.5" stroke-dasharray="8 6" opacity="0.6"/>
+
+    <!-- ZK proof-core (diamond) -->
+    <g filter="url(#neon)">
+      <polygon points="0,-46 48,0 0,46 -48,0" fill="url(#core)"/>
+      <polygon points="0,-22 24,0 0,22 -24,0" fill="#ffffff" opacity="0.95"/>
+    </g>
+
+    <!-- Static revocation sentinel at top position -->
+    <circle cx="0" cy="-140" r="7" fill="#ffffff" filter="url(#neon)"/>
+
+  </g>
+</svg>
