@@ -57,7 +57,9 @@ impl Bastion {
     /// Initialize the contract with an empty Merkle root and the admin address.
     pub fn init(&mut self, admin: Address) {
         self.admin.set(admin);
-        self.merkle_root.set(String::from("0x0000000000000000000000000000000000000000000000000000000000000000"));
+        self.merkle_root.set(String::from(
+            "0x0000000000000000000000000000000000000000000000000000000000000000",
+        ));
         self.valid_count.set(0);
         self.revoked_count.set(0);
     }
@@ -178,12 +180,7 @@ mod tests {
     fn setup() -> (odra::host::HostEnv, BastionHostRef) {
         let env = odra_test::env();
         let admin = env.get_account(0);
-        let contract = Bastion::deploy(
-            &env,
-            BastionInitArgs {
-                admin,
-            },
-        );
+        let contract = Bastion::deploy(&env, BastionInitArgs { admin });
         (env, contract)
     }
 
@@ -195,7 +192,10 @@ mod tests {
         let root = "root-hash-1".to_string();
 
         // 1. Initial views
-        assert_eq!(c.current_root(), "0x0000000000000000000000000000000000000000000000000000000000000000");
+        assert_eq!(
+            c.current_root(),
+            "0x0000000000000000000000000000000000000000000000000000000000000000"
+        );
         assert_eq!(c.valid_count(), 0);
         assert_eq!(c.revoked_count(), 0);
         assert_eq!(c.status(commitment.clone()), STATUS_UNKNOWN);
@@ -214,7 +214,12 @@ mod tests {
         // 4. Revoke
         let nullifier = "nullifier-hash-1".to_string();
         let root2 = "root-hash-3".to_string();
-        c.revoke(nullifier.clone(), commitment.clone(), REASON_SANCTIONS, root2.clone());
+        c.revoke(
+            nullifier.clone(),
+            commitment.clone(),
+            REASON_SANCTIONS,
+            root2.clone(),
+        );
         assert_eq!(c.current_root(), root2);
         assert_eq!(c.valid_count(), 0);
         assert_eq!(c.revoked_count(), 1);
@@ -226,7 +231,7 @@ mod tests {
     fn insert_non_admin_reverts() {
         let (env, mut c) = setup();
         env.set_caller(env.get_account(1));
-        
+
         let res = c.try_insert_commitment(
             "commitment".to_string(),
             "sig".to_string(),
@@ -239,7 +244,7 @@ mod tests {
     fn revoke_non_admin_reverts() {
         let (env, mut c) = setup();
         env.set_caller(env.get_account(1));
-        
+
         let res = c.try_revoke(
             "nullifier".to_string(),
             "commitment".to_string(),
@@ -254,11 +259,11 @@ mod tests {
         let (_env, mut c) = setup();
         let commitment = "commitment".to_string();
         c.insert_commitment(commitment.clone(), "sig".to_string(), "root".to_string());
-        
+
         let nullifier = "nullifier".to_string();
         let root2 = "root2".to_string();
         c.force_revoke(nullifier.clone(), commitment.clone(), root2.clone());
-        
+
         assert_eq!(c.current_root(), root2);
         assert_eq!(c.status(commitment), STATUS_REVOKED);
         assert!(c.is_nullified(nullifier));
@@ -268,7 +273,7 @@ mod tests {
     fn force_revoke_non_admin_reverts() {
         let (env, mut c) = setup();
         env.set_caller(env.get_account(1));
-        
+
         let res = c.try_force_revoke(
             "nullifier".to_string(),
             "commitment".to_string(),
@@ -284,8 +289,13 @@ mod tests {
         let nullifier = "nullifier-1".to_string();
         let root = "root-hash-1".to_string();
 
-        c.revoke(nullifier.clone(), commitment, REASON_ANOMALOUS, root.clone());
-        
+        c.revoke(
+            nullifier.clone(),
+            commitment,
+            REASON_ANOMALOUS,
+            root.clone(),
+        );
+
         assert_eq!(c.current_root(), root);
         assert_eq!(c.valid_count(), 0);
         assert_eq!(c.revoked_count(), 0); // remains 0 since it was not STATUS_VALID
