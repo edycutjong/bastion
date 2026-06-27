@@ -8,7 +8,7 @@
 
   [![Live Demo](https://img.shields.io/badge/🚀_Live-Demo-06b6d4?style=for-the-badge)](https://bastion.edycu.dev)
   [![Pitch Deck](https://img.shields.io/badge/📊_Pitch-Deck-f59e0b?style=for-the-badge)](https://bastion.edycu.dev/pitch.html)
-  [![Pitch Video](https://img.shields.io/badge/🎬_Pitch-Video-ef4444?style=for-the-badge)](https://youtu.be/abcdef)
+  [![Pitch Video](https://img.shields.io/badge/🎬_Pitch-Video-ef4444?style=for-the-badge)](https://youtu.be/h_C52SAdoxA)
   [![Built for Casper Agentic Buildathon 2026](https://img.shields.io/badge/DoraHacks-Casper_Agentic_Buildathon_2026-8b5cf6?style=for-the-badge)](https://dorahacks.io/hackathon/casper-agentic-buildathon)
 
   <br/>
