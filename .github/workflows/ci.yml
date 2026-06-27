@@ -43,6 +43,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: frontend-coverage
+          path: coverage/
           retention-days: 7
 
   contract-quality:
