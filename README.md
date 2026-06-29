@@ -1,7 +1,7 @@
 <div align="center">
   <img src="docs/icon.svg" alt="Bastion Logo" width="144">
   <h1>Bastion 🔒</h1>
-  <p><em>ZK compliance gateway for the Casper ecosystem</em></p>
+  <p><em>Autonomous, privacy-preserving compliance — enforced on-chain on Casper.</em></p>
   <img src="docs/readme-hero-animated.svg" alt="Bastion Hero" width="100%">
 
   <br/>
