@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/edycutjong/bastion/security/policy
+    about: Please report security issues privately — do not open a public issue.
+  - name: Casper Developers (Telegram)
+    url: https://t.me/CSPRDevelopers
+    about: Ask questions and chat with the Casper developer community.
+  - name: Casper Network Discord
+    url: https://discord.com/invite/caspernetwork
+    about: Join the Casper Network community on Discord.
