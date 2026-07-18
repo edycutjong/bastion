@@ -160,7 +160,7 @@
         </div>
         <div class="glass rounded-xl p-4 flex items-start gap-4">
           <span class="text-xl text-red-400">⚡</span>
-          <div><div class="text-sm font-semibold text-slate-200">Autonomous Revocation</div><p class="text-xs text-slate-400 mt-1">An autonomous monitor agent triggers <code class="font-mono text-cyan-300">revoke</code> on the Odra contract the instant a risk event fires — proven by a real on-chain revoke transaction.</p></div>
+          <div><div class="text-sm font-semibold text-slate-200">Autonomous Revocation + Claude Officer</div><p class="text-xs text-slate-400 mt-1">A monitor agent triggers <code class="font-mono text-cyan-300">revoke</code> the instant a risk event fires — proven by a real on-chain tx. A real Claude officer then writes the file memo, rates severity, and attests its inputs held zero PII.</p></div>
         </div>
         <div class="glass rounded-xl p-4 flex items-start gap-4">
           <span class="text-xl text-amber-400">🖥️</span>
@@ -197,7 +197,8 @@
             <tr><td class="font-semibold">Signing</td><td>casper-js-sdk (PEM key, autonomous revocation)</td></tr>
             <tr><td class="font-semibold">Micropayments</td><td>x402 — pay-to-check; CSPR.cloud facilitator verify/settle in live mode</td></tr>
             <tr><td class="font-semibold">Monitoring</td><td>Autonomous monitor agent — streaming pattern (simulated event feed in demo)</td></tr>
-            <tr><td class="font-semibold">Testing</td><td>Vitest (99 tests) + Playwright (E2E) + CodeQL</td></tr>
+            <tr><td class="font-semibold">AI Officer</td><td>Claude Haiku 4.5 — revocation memos + severity + privacy attestation; keyless fallback</td></tr>
+            <tr><td class="font-semibold">Testing</td><td>Vitest (106 tests) + Playwright (E2E) + CodeQL</td></tr>
           </tbody>
         </table>
       </div>

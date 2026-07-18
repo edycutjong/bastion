@@ -39,6 +39,7 @@
     "contract:test": "cd contract && cargo test"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.112.3",
     "casper-js-sdk": "^5.0.12",
     "ethers": "^6",
     "next": "16.2.10",

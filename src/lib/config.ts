@@ -13,6 +13,10 @@ export const config = {
   x402PayeeAddress: process.env.X402_PAYEE_ADDRESS ?? "",
   x402ChainId: process.env.X402_CAIP2_CHAIN_ID ?? "casper:casper-test",
 
+  // Real Claude compliance officer over revocation events (optional — keyless
+  // fallback keeps the deterministic pipeline unchanged).
+  anthropicKey: process.env.ANTHROPIC_API_KEY ?? "",
+  officerModel: process.env.BASTION_OFFICER_MODEL ?? "claude-haiku-4-5",
 } as const;
 
 export function assertServerEnv(keys: (keyof typeof config)[]): void {

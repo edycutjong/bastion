@@ -73,7 +73,8 @@ Centralized compliance tools force users to surrender their Personally Identifia
 
 **Key Features:**
 - ⚡ **Privacy-preserving credentials:** a real Merkle tree + nullifier scheme proves set-membership and non-revocation. The proof is **Groth16-shaped (snarkjs-API compatible)** and the commitment hash is **SHA-256-based** — structured as a drop-in for field-native Poseidon + real snarkjs Groth16, which is the documented roadmap. **No PII is ever written on-chain.**
-- 🔒 **Autonomous enforcement:** a CSPR.cloud streaming monitor triggers `revoke` on the Odra contract when a risk event fires — no human in the loop.
+- 🔒 **Autonomous enforcement:** a monitor agent (streaming pattern; simulated feed in demo) triggers `revoke` on the Odra contract when a risk event fires — no human in the loop, proven by a real on-chain revoke transaction.
+- 🧠 **Real Claude compliance officer:** with `ANTHROPIC_API_KEY` set, every completed revocation gets a genuine, schema-constrained Claude review in the `/api/console` response ([core/llm.ts](src/core/llm.ts)) — a file memo per revocation, an independent severity rating, and a **privacy attestation** that its inputs contained only hashes and event metadata (zero PII — the LLM audits the privacy claim itself). Guardrail: decisions and crypto stay deterministic; no key → `officerReview: null` and nothing else changes.
 - 🖥️ **Compliance Console (the live demo):** inject a sanctions hit and watch one holder's proof flip ✓→✗, the Merkle root update, and the pool eject them — while every other holder keeps verifying (`/api/console`, real Merkle/nullifier recomputation).
 - 🎨 **Institutional UI:** Next.js 16 / React 19 dashboard styled like a deep-navy security console.
 
@@ -85,23 +86,25 @@ Centralized compliance tools force users to surrender their Personally Identifia
 | **Contract** | Odra (Rust) on Casper Testnet — installed via `pnpm deploy:rpc` |
 | **Proof engine** | Groth16-shaped, snarkjs-API compatible (SHA-256 commitment) — drop-in for real Poseidon + snarkjs Groth16 (roadmap) |
 | **Signing** | `casper-js-sdk` (backend PEM key) for autonomous `revoke` / `insert_commitment` |
-| **Infrastructure**| x402 micropayments, CSPR.cloud streaming monitor |
+| **AI Officer** | Claude Haiku 4.5 ([core/llm.ts](src/core/llm.ts)) — revocation memos + severity + privacy attestation; keyless deterministic fallback |
+| **Infrastructure**| x402 micropayments, autonomous monitor agent (streaming pattern) |
 
 ### System Data Flow
 
 ```mermaid
 flowchart TD
     U[User] -->|submit docs off-chain| VER[Verifier Agent]
-    VER -->|eip-712 credential + Poseidon commitment| CRED[Gasless Credential + Commitment]
-    CRED -->|CSPR.click insert tx| REG[Upgradable Odra Contract: Merkle root + nullifier set]
+    VER -->|eip-712 credential + SHA-256 commitment| CRED[Gasless Credential + Commitment]
+    CRED -->|casper-js-sdk insert tx| REG[Upgradable Odra Contract: Merkle root + nullifier set]
     REG --> TN[(Casper Testnet)]
     PII[(Encrypted off-chain vault)] -. never on-chain .- REG
-    U2[Holder] -->|secret + Merkle path| ZK[circom/snarkjs Groth16 prover]
+    U2[Holder] -->|secret + Merkle path| ZK[Groth16-shaped prover — snarkjs drop-in on roadmap]
     ZK -->|proof: member & non-revoked| GATE[Gateway Verifier]
     GATE -->|check vs on-chain root/nullifiers| REG
     GATE -->|valid → admit| POOL[Gated Demo Pool]
-    MON[Monitor Agent] -->|CSPR.cloud streams + risk feed| RISK{Risk signal?}
-    RISK -->|yes| REV[CSPR.click revoke tx: update root / publish nullifier]
+    MON[Monitor Agent] -->|risk feed, streaming pattern| RISK{Risk signal?}
+    RISK -->|yes| REV[casper-js-sdk revoke tx: update root / publish nullifier]
+    REV -->|completed revocation| OFF[Claude Compliance Officer: memo + severity + privacy attestation]
     REV --> REG
     REG -. revoked proof stops verifying → eject .- POOL
     DAPP[Protocol / dApp] -->|POST /check + proof| XQ[x402 Check Server]
@@ -117,6 +120,7 @@ flowchart TD
     *   **Casper Testnet Smart Contract:** Built with the Odra framework in Rust, located in [bastion.rs](contract/src/bastion.rs). Manages on-chain Merkle-root state transitions of valid credentials and logs revoked nullifiers.
     *   **Casper x402 Micropayments:** Integrated in [x402_facilitator.ts](src/core/x402_facilitator.ts) to gate pay-to-check reads.
     *   **Autonomous signing:** Backend `casper-js-sdk` (PEM key) builds, signs, and broadcasts `insert_commitment` / `revoke` in [casper.ts](src/lib/casper.ts) — no browser wallet required.
+    *   **Real LLM Compliance Officer (Claude):** [llm.ts](src/core/llm.ts) makes a genuine, schema-constrained Anthropic call over completed revocations — per-event memos, severity, and a privacy attestation — with a strict guardrail: the LLM can never alter decisions, nullifiers, or roots, and without a key the pipeline falls back cleanly.
 
 ## 🚀 Getting Started
 
@@ -190,7 +194,7 @@ make security-scan     # pnpm audit + license check
 | Layer | Tool | Status |
 |---|---|---|
 | Code Quality | ESLint + TypeScript | ✅ |
-| Unit Testing | Vitest (99 tests) | ✅ |
+| Unit Testing | Vitest (106 tests) | ✅ |
 | E2E Testing | Playwright (3 suites) | ✅ |
 | Security (SAST) | CodeQL | ✅ |
 | Security (SCA) | Dependabot + npm audit | ✅ |
