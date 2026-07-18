@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.1](../../compare/v1.4.0...v1.4.1) (2026-07-18)
+
+### 🐛 Bug Fixes
+
+- **ci:** exclude vendored public/vendor bundle from ESLint (2b27b95)
+
+### 📝 Documentation
+
+- **pitch:** finals-round accuracy pass — honest integration claims, on-chain proof rows, finalist badges, launch plan, print-to-PDF, self-hosted Tailwind (ff4c1a7)
+- **readme:** add @VouchOnCasper follow badge (#16) (44c66cf)
+- add community health files (code of conduct, contributing, issue + PR templates) (9198239)
+- **readme:** update description tagline (310db13)
+- **readme:** add step-by-step screenshots walkthrough (948d336)
+
+### 🔧 Chores
+
+- **deps-dev:** bump tsx from 4.22.5 to 4.23.0 (15161f4)
+- **deps-dev:** bump @vitest/coverage-v8 from 4.1.9 to 4.1.10 (c420c26)
+- **deps:** bump react-dom from 19.2.4 to 19.2.7 (f893adf)
+- **deps-dev:** bump @tailwindcss/postcss from 4.3.0 to 4.3.2 (5006409)
+- **deps-dev:** bump @types/node from 26.1.0 to 26.1.1 (78219f9)
+- **deps-dev:** bump typescript from 5.9.3 to 6.0.3 (8b6f844)
+- **deps-dev:** bump vitest from 4.1.8 to 4.1.10 (#14) (64be7af)
+- **deps:** bump next from 16.2.9 to 16.2.10 (#8) (43abe0c)
+- **deps-dev:** bump eslint-config-next from 16.2.9 to 16.2.10 (#15) (f1870c9)
+- **deps-dev:** bump @types/node from 20.19.43 to 26.1.0 (#13) (0a4429b)
+- **deps-dev:** bump @playwright/test from 1.60.0 to 1.61.1 (#7) (7e2f27b)
+- **deps-dev:** bump tsx from 4.22.4 to 4.22.5 (#12) (7a7660d)
+- **deps:** bump ethers from 6.16.0 to 6.17.0 (#11) (49694a6)
+- **deps:** bump react from 19.2.4 to 19.2.7 (#10) (b11287a)
+- **deps-dev:** bump @lhci/cli from 0.14.0 to 0.15.1 (#9) (afae734)
+- **deps-dev:** bump tailwindcss from 4.3.0 to 4.3.2 (#6) (f8a4fe7)
+
+### ✅ Tests
+
+- reach 100% statement and branch coverage (e2e20c9)
+
 ## [1.4.0](../../compare/v1.3.0...v1.4.0) (2026-06-27)
 
 ### 🚀 Features
