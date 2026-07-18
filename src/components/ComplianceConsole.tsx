@@ -22,6 +22,18 @@ interface HolderView {
   commitmentHash: string | null;
 }
 
+interface RevocationMemo {
+  holderId: string;
+  memo: string;
+  severity: "critical" | "high" | "medium";
+}
+
+interface OfficerReview {
+  memos: RevocationMemo[];
+  privacyAttestation: string;
+  model: string;
+}
+
 interface Snapshot {
   poolId: string;
   root: string;
@@ -30,6 +42,8 @@ interface Snapshot {
   revokedNullifiers: string[];
   watchHolderId: string | null;
   holders: HolderView[];
+  /** Real Claude compliance-officer review — null when keyless or nothing revoked. */
+  officerReview?: OfficerReview | null;
 }
 
 const STATUS_STYLE: Record<string, { label: string; dot: string; cls: string }> = {
@@ -172,6 +186,41 @@ export function ComplianceConsole({ initialSnapshot }: { initialSnapshot: Snapsh
               )}
             </div>
           </div>
+        </div>
+      )}
+
+      {/* Claude compliance-officer review (real LLM; null when keyless) */}
+      {snapshot.officerReview && (
+        <div className="mt-4 rounded-lg border border-cyan-500/20 bg-cyan-500/5 p-4 animate-slideDown">
+          <div className="flex items-center gap-2">
+            <p className="text-[10px] uppercase tracking-widest text-slate-500">
+              Claude Compliance Officer
+            </p>
+            <span className="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-2 py-0.5 font-mono text-[9px] text-cyan-400">
+              live · {snapshot.officerReview.model}
+            </span>
+          </div>
+          <div className="mt-2 space-y-2">
+            {snapshot.officerReview.memos.map((m) => (
+              <div key={m.holderId} className="text-xs leading-relaxed text-slate-300">
+                <span
+                  className={`mr-2 rounded px-1.5 py-0.5 font-mono text-[9px] uppercase ${
+                    m.severity === "critical"
+                      ? "bg-red-500/15 text-red-300"
+                      : m.severity === "high"
+                        ? "bg-amber-500/15 text-amber-300"
+                        : "bg-slate-500/15 text-slate-300"
+                  }`}
+                >
+                  {m.severity}
+                </span>
+                <span className="font-mono text-slate-400">{m.holderId}</span> — {m.memo}
+              </div>
+            ))}
+          </div>
+          <p className="mt-2 text-[10px] italic text-slate-500">
+            🔒 Privacy attestation: {snapshot.officerReview.privacyAttestation}
+          </p>
         </div>
       )}
 
