@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0](../../compare/v1.5.0...v2.0.0) (2026-07-18)
+
+### ⚠️ BREAKING CHANGES
+
+- Vouch 2.0 — Casper Buildathon Finals release (383f92c)
+
+### 🚀 Features
+
+- Vouch 2.0 — Casper Buildathon Finals release (383f92c)
+- **ui:** Claude Compliance Officer panel in the console — memos, severity, privacy attestation (86b0503)
+
 ## [1.5.0](../../compare/v1.4.1...v1.5.0) (2026-07-18)
 
 ### 🚀 Features
