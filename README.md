@@ -180,7 +180,7 @@ The following design documents and resources are available in this repository:
 # ── Code Quality ────────────────────────────
 pnpm run lint          # ESLint
 pnpm run typecheck     # TypeScript check
-pnpm run test          # Run tests (99)
+pnpm run test          # Run tests (106)
 pnpm run test:coverage # Coverage report
 
 # ── Advanced Testing ────────────────────────
