@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.0](../../compare/v1.4.1...v1.5.0) (2026-07-18)
+
+### 🚀 Features
+
+- **ai:** real Claude compliance officer — schema-constrained revocation memos + severity + privacy attestation, deterministic-decision guardrail, keyless fallback; fix stale CSPR.click/streaming/circom claims (84ed9de)
+
+### 📝 Documentation
+
+- **pitch:** wire live @VouchOnCasper socials into launch plan + closing slide (88e76bc)
+
+### 🔧 Chores
+
+- **deps-dev:** bump tailwindcss from 4.3.2 to 4.3.3 (#27) (d899c3c)
+- **deps-dev:** bump @eslint/eslintrc from 3.3.5 to 3.3.6 (#26) (eae5553)
+- **deps-dev:** bump @tailwindcss/postcss from 4.3.2 to 4.3.3 (#25) (26b4a5c)
+- **deps-dev:** bump tsx from 4.23.0 to 4.23.1 (#24) (3079457)
+- **deps:** bump actions/setup-node from 4 to 7 (#23) (5fccdde)
+
 ## [1.4.1](../../compare/v1.4.0...v1.4.1) (2026-07-18)
 
 ### 🐛 Bug Fixes
