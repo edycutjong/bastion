@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.0](../../compare/v2.0.0...v2.1.0) (2026-07-19)
+
+### 🚀 Features
+
+- **ux:** pulsing hero trigger + proof-flip micro-animation (reduced-motion safe) (66fceaf)
+
+### 📝 Documentation
+
+- correct test count in quick-start (99 -> 106) (f0e6403)
+
 ## [2.0.0](../../compare/v1.5.0...v2.0.0) (2026-07-18)
 
 ### ⚠️ BREAKING CHANGES
