@@ -254,7 +254,10 @@ export function ComplianceConsole({ initialSnapshot }: { initialSnapshot: Snapsh
                 </p>
                 <div className="mt-3 flex items-center justify-between text-xs">
                   <span className="text-slate-500">ZK proof</span>
-                  <span className={h.proofVerifies ? "text-green-400" : "text-red-400"}>
+                  <span
+                    key={String(h.proofVerifies)}
+                    className={`animate-flipIn ${h.proofVerifies ? "text-green-400" : "text-red-400"}`}
+                  >
                     {h.proofVerifies ? "✓ verifies" : "✕ fails"}
                   </span>
                 </div>
@@ -319,7 +322,7 @@ export function ComplianceConsole({ initialSnapshot }: { initialSnapshot: Snapsh
           <button
             onClick={() => revoke(watchId)}
             disabled={loading}
-            className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm font-medium text-red-300 transition-all hover:border-red-400/50 hover:bg-red-500/20 disabled:opacity-50"
+            className={`rounded-lg border border-red-500/40 bg-red-500/10 px-5 py-2.5 text-sm font-semibold text-red-300 transition-all hover:border-red-400/60 hover:bg-red-500/20 active:scale-[.97] disabled:opacity-50 ${revoked.length === 0 ? "animate-pulseRing" : ""}`}
           >
             ⚠ Trigger OFAC hit on {watchId}
           </button>

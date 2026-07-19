@@ -238,3 +238,29 @@ h1, h2, h3, h4, h5, h6 {
   animation: flash-red 0.7s ease-out forwards;
 }
 
+/* Attention ring on the hero action (until first use) */
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(248, 113, 113, 0.45); }
+  70% { box-shadow: 0 0 0 10px rgba(248, 113, 113, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(248, 113, 113, 0); }
+}
+.animate-pulseRing {
+  animation: pulse-ring 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Proof status flip (✓ → ✕) */
+@keyframes flip-in {
+  0% { transform: rotateX(90deg); opacity: 0; }
+  100% { transform: rotateX(0deg); opacity: 1; }
+}
+.animate-flipIn {
+  display: inline-block;
+  animation: flip-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulseRing, .animate-flipIn, .animate-shake, .animate-flashRed {
+    animation: none;
+  }
+}
+
