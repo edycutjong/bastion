@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.2.1](../../compare/v2.2.0...v2.2.1) (2026-07-25)
+
+### 🐛 Bug Fixes
+
+- **honesty:** align live UI + linked docs with the real stack (0489843)
+
 ## [2.2.0](../../compare/v2.1.2...v2.2.0) (2026-07-25)
 
 ### 🚀 Features
