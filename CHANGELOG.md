@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.2](../../compare/v2.1.1...v2.1.2) (2026-07-25)
+
+### 🐛 Bug Fixes
+
+- honest sponsor-defense, simulated-revoke labeling, untrack kitchen docs (fc7164b)
+
+### 🔧 Chores
+
+- **scripts:** add finals-window activity refresh script (6fc2029)
+
+### 📝 Documentation
+
+- add finals-window on-chain proofs and refreshed screenshot (5d6038b)
+- **readme:** link Casper Buildathon 2026 FINALS + Vouch suite hub (32fa710)
+
 ## [2.1.1](../../compare/v2.1.0...v2.1.1) (2026-07-25)
 
 ### 🐛 Bug Fixes
