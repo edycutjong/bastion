@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.1](../../compare/v2.1.0...v2.1.1) (2026-07-25)
+
+### 🐛 Bug Fixes
+
+- **security:** bump minimatch@3->10.2.5 to eliminate vulnerable brace-expansion@1.1.16 (GHSA-mh99-v99m-4gvg) (6fc41f0)
+
+### 🔧 Chores
+
+- **security:** patch sharp (>=0.35.0) and brace-expansion@5 (>=5.0.8) (e9bee9e)
+- **security:** patch axios (>=1.18.0) + bump next/react/react-dom/anthropic-sdk/eslint-config-next (0d550a5)
+
 ## [2.1.0](../../compare/v2.0.0...v2.1.0) (2026-07-19)
 
 ### 🚀 Features
