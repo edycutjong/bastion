@@ -10,7 +10,7 @@ export function X402CheckPanel() {
         <p className="text-sm text-slate-300">
           A mock dApp submits a holder&apos;s ZK proof to{" "}
           <code className="font-mono text-cyan-400">/check</code> →{" "}
-          <span className="text-amber-300">402</span> → EIP-712 CEP-18 payment →{" "}
+          <span className="text-amber-300">402</span> → EIP-712-style CEP-18 payment (mock in demo; real facilitator when BASTION_DEMO=false) →{" "}
           <span className="text-green-300">200</span>{" "}
           <code className="font-mono text-green-400">{`{ compliant: true }`}</code>
         </p>

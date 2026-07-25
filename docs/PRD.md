@@ -1,6 +1,6 @@
 # Bastion — Product Requirements Document
 
-> Part of the **Vouch** suite (Conclave · Verity · Bastion). **Build order: second** — cheapest reuse of the spine (casper-eip-712 JS + CSPR.click + a small upgradable Odra contract), x402 is a thin add-on, not load-bearing.
+> Part of the **Vouch** suite (Conclave · Verity · Bastion). **Build order: second** — cheapest reuse of the spine (casper-js-sdk + a small upgradable Odra contract), x402 is a thin add-on, not load-bearing.
 
 ## Emotional Hook (first line)
 *A compliance officer at an RWA fund has to choose between two bad options every morning: put customers' passports and bank details on a public ledger, or stay out of DeFi entirely — and she's tired of choosing.*
@@ -10,8 +10,8 @@ Real-world assets and institutional capital can't touch DeFi without KYC/AML —
 
 ## Solution Overview
 **Bastion** is an agentic compliance gateway that lets a user **prove they are compliant in zero-knowledge** — without revealing who they are or which credential they hold — and that can be **revoked** the moment they're not:
-- A user verifies **off-chain**; the agent issues a **gasless attestation** signed with **casper-eip-712** (no PII ever on-chain) **and** inserts a **credential commitment** (a Poseidon hash of the holder's secret + attributes) as a leaf in an on-chain **Merkle accumulator** held in an **upgradable Odra contract**.
-- To enter a gated dApp, the holder generates a **Groth16 zero-knowledge proof** (circom + snarkjs) that their commitment is a member of the **current valid-set Merkle root** and their nullifier is **not revoked** — proving "I am a compliant, non-revoked user" while revealing **nothing** about identity or which leaf.
+- A user verifies **off-chain**; the agent issues a **gasless attestation** signed with an **EIP-712-style** scheme (SHA-256 stand-in in the MVP; no PII ever on-chain) **and** inserts a **credential commitment** (a Poseidon hash of the holder's secret + attributes) as a leaf in an on-chain **Merkle accumulator** held in an **upgradable Odra contract**.
+- To enter a gated dApp, the holder generates a **Groth16-shaped zero-knowledge proof** (simulated; real circom/snarkjs on roadmap) that their commitment is a member of the **current valid-set Merkle root** and their nullifier is **not revoked** — proving "I am a compliant, non-revoked user" while revealing **nothing** about identity or which leaf.
 - A **monitoring agent** watches risk signals and **autonomously revokes** by removing the commitment / publishing its nullifier and updating the root — after which the holder can no longer produce a valid proof.
 - Other dApps **pay per check** via **x402** to verify a proof / query status, and get only a boolean — never an identity.
 
@@ -22,16 +22,18 @@ Compliance *with* zero-knowledge privacy, that can be taken away the moment it's
 - **Secondary:** Institutions that won't touch non-compliant rails, and other agents needing a compliance gate before transacting.
 
 ## The ONE core flow (narrow + deep)
-> **User verifies off-chain → agent issues a gasless eip-712 credential + inserts a commitment into the on-chain Merkle set (PII stays off-chain) → holder generates a Groth16 ZK proof of "valid & non-revoked" to enter a gated pool, revealing no identity → monitoring agent detects a risk signal and autonomously REVOKES (updates the root / nullifier) → the holder's proof stops verifying and the pool ejects them — live.**
+> **User verifies off-chain → agent issues a gasless EIP-712-style credential + inserts a commitment into the on-chain Merkle set (PII stays off-chain) → holder generates a Groth16-shaped ZK proof of "valid & non-revoked" to enter a gated pool, revealing no identity → monitoring agent detects a risk signal and autonomously REVOKES (updates the root / nullifier) → the holder's proof stops verifying and the pool ejects them — live.**
 
 ## Core Features (MVP)
 1. **Agentic verification** — user submits documents off-chain; the agent verifies and decides.
-2. **Gasless attestation + commitment** — credential issued via casper-eip-712 typed-data signature (no PII on-chain); a Poseidon **commitment** is inserted into the on-chain Merkle set.
-3. **ZK compliance proof** — Groth16 circuit (circom + snarkjs) proving **set-membership + non-revocation** without revealing identity or leaf; verified against the on-chain Merkle root.
+2. **Gasless attestation + commitment** — credential issued via an EIP-712-style typed-data signature (SHA-256 stand-in in the MVP; no PII on-chain); a Poseidon **commitment** is inserted into the on-chain Merkle set.
+3. **ZK compliance proof** — Groth16-shaped circuit (simulated; real circom/snarkjs on roadmap) proving **set-membership + non-revocation** without revealing identity or leaf; verified against the on-chain Merkle root.
 4. **Upgradable credential contract** — Odra contract holds the **Merkle root**, a **nullifier/revocation set**, and per-commitment `valid/revoked/expired`.
 5. **Autonomous revocation** — monitoring agent revokes on a risk trigger (sanctions hit, anomalous activity), updating root/nullifier so the holder's proof stops verifying.
 6. **x402 compliance check** — dApps pay per proof-verification / status query; boolean only.
 7. **Gated demo pool** — a mock pool that admits only valid ZK proofs and **ejects on revocation**.
+
+> **MVP fidelity qualifier (mirrors [SPONSOR_DEFENSE.md](SPONSOR_DEFENSE.md)):** the ZK proof and the commitment/credential attestation are **simulated Groth16-shaped SHA-256 stand-ins** (`src/core/zk.ts`, `src/core/poseidon.ts`, `src/core/attest.ts`) that mirror the snarkjs / EIP-712 API shape. **Real snarkjs Groth16 + field-native Poseidon and `casper-eip-712` typed-data signing are on the roadmap.** The real, novel part is the compliance flow (commitment → membership → autonomous revocation) on a live Casper Odra contract; signing/broadcast is real via `casper-js-sdk`.
 
 ## User Stories
 - *As an RWA platform,* I gate minting on a Bastion credential, so only KYC'd-but-private users can buy — without my contract ever seeing a passport.
@@ -50,6 +52,6 @@ Compliance *with* zero-knowledge privacy, that can be taken away the moment it's
 - Mainnet; native (non-facilitator) x402.
 
 ## Honest Limitations
-- The ZK proofs are **real Groth16 set-membership + non-revocation proofs** (circom/snarkjs), so identity is never revealed. **However**, MVP verification happens in the gateway against the on-chain root/nullifier set — *full on-chain proof verification on Casper is roadmap*. We state this split precisely rather than implying end-to-end on-chain ZK.
+- The ZK proofs are **Groth16-*shaped* set-membership + non-revocation proofs** — SHA-256 stand-ins (`src/core/zk.ts`, `src/core/poseidon.ts`) that mirror the snarkjs proof/public-signal shape, so no identity is revealed by the flow. They are **not** a real pairing-based prover: real circom/snarkjs Groth16 + field-native Poseidon are **roadmap**. MVP verification happens in the gateway against the on-chain root/nullifier set; *full on-chain proof verification on Casper is also roadmap*. We state this split precisely rather than implying real or end-to-end on-chain ZK.
 - The monitoring agent's revocation is only as good as its risk feed; the contract's upgradability + explicit revocation set is the safety net, and a human admin can force-revoke.
 - x402 is the newest dependency; the compliance *check* uses it, but issuance/revocation/proof-generation (the core) do **not** depend on x402.

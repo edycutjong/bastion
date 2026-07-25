@@ -11,7 +11,7 @@ export function SuiteFooter() {
           x402
         </span>
         <span className="rounded border border-slate-800 px-1.5 py-0.5 font-mono text-[10px] text-slate-400">
-          casper-eip-712
+          casper-js-sdk
         </span>
         <span className="rounded border border-slate-800 px-1.5 py-0.5 font-mono text-[10px] text-slate-400">
           Odra
