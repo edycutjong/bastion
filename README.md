@@ -10,6 +10,8 @@
   [![Pitch Deck](https://img.shields.io/badge/📊_Pitch-Deck-f59e0b?style=for-the-badge)](https://bastion.edycu.dev/pitch.html)
   [![Pitch Video](https://img.shields.io/badge/🎬_Pitch-Video-ef4444?style=for-the-badge)](https://youtu.be/h_C52SAdoxA)
   [![Built for Casper Agentic Buildathon 2026](https://img.shields.io/badge/DoraHacks-Casper_Agentic_Buildathon_2026-8b5cf6?style=for-the-badge)](https://dorahacks.io/hackathon/casper-agentic-buildathon)
+  [![Casper Buildathon 2026 — FINALS](https://img.shields.io/badge/DoraHacks-Buildathon_2026_FINALS-a855f7?style=for-the-badge)](https://dorahacks.io/hackathon/casper-agentic-buildathon-finals)
+  [![Vouch Suite Hub](https://img.shields.io/badge/🛡️_Vouch-Suite_Hub-7c3aed?style=for-the-badge)](https://vouch.edycu.dev)
   [![Follow on X](https://img.shields.io/badge/Follow-%40VouchOnCasper-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/VouchOnCasper)
 
   <br/>
@@ -56,7 +58,7 @@
   <img src="docs/screenshots/04-ofac-hit-triggered.png" alt="Autonomous Revocation" width="100%">
 </div>
 
-*Triggering a simulated OFAC hit on Mallory. The monitor agent instantly detects the risk event, pushes a revocation transaction to Casper, and Mallory is ejected from the pool.*
+*Triggering a simulated OFAC hit on Mallory. The monitor agent instantly detects the risk event, pushes a revocation transaction to Casper, and Mallory is ejected from the pool — then the **Claude compliance officer** (real LLM) files a critical-severity memo and attests its inputs contained zero PII.*
 
 ### 5. Resetted State
 <div align="center">
@@ -151,6 +153,8 @@ flowchart TD
 | **Install Transaction** | [`6632ffec189f76cdf4dd8d057642160cac3608b98bd0477e6cc540319c6c0f22`](https://testnet.cspr.live/transaction/6632ffec189f76cdf4dd8d057642160cac3608b98bd0477e6cc540319c6c0f22) |
 | **`insert_commitment` (admit a holder)** | [`1b65887722fa960437e10f1e497ac3837934e645d153e9268d79190b2beebb27`](https://testnet.cspr.live/transaction/1b65887722fa960437e10f1e497ac3837934e645d153e9268d79190b2beebb27) |
 | **`revoke` (autonomous revocation)** | [`89db2b3bc80c2e95966e82456ad6f2a3fe6c49a6ce3cc47155f9e44dbf50b7cc`](https://testnet.cspr.live/transaction/89db2b3bc80c2e95966e82456ad6f2a3fe6c49a6ce3cc47155f9e44dbf50b7cc) |
+| **`insert_commitment` — finals-window refresh (2026-07-21)** | [`49df1b23f57cf452d2d8081916c4a527df078c11f1cbd8340ab6def4add015d9`](https://testnet.cspr.live/transaction/49df1b23f57cf452d2d8081916c4a527df078c11f1cbd8340ab6def4add015d9) |
+| **`revoke` — manual revocation, valid→revoked confirmed (2026-07-21)** | [`30bfb02e071b122c090d778118b76a6ffc71f214ab60e8effb4d2ce1d0298ba2`](https://testnet.cspr.live/transaction/30bfb02e071b122c090d778118b76a6ffc71f214ab60e8effb4d2ce1d0298ba2) |
 | **CEP-18 Token (x402)** | [`hash-541069ed8cad06249f76edb0972932d012badbb256111d3000df06ac1d703be6`](https://testnet.cspr.live/contract-package/541069ed8cad06249f76edb0972932d012badbb256111d3000df06ac1d703be6) |
 | **Issuer Account** | [`01b9c7741b3679191aa4f82e5529e3f0908e3d5cbc9c3c352807e17b7c48bffc55`](https://testnet.cspr.live/account/01b9c7741b3679191aa4f82e5529e3f0908e3d5cbc9c3c352807e17b7c48bffc55) |
 | **Network** | Casper Testnet (`casper-test`) |
