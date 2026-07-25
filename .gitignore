@@ -68,3 +68,7 @@ _designs/
 
 # Lighthouse
 .lighthouseci/
+
+# kitchen docs — must never be in the public build repo
+AGENTS.md
+CLAUDE.md

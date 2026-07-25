@@ -172,18 +172,22 @@ export function ComplianceConsole({ initialSnapshot }: { initialSnapshot: Snapsh
                 nullifier published · root updated · ejected from pool.
               </p>
               {banner.revocationDeployHash && (
-                <p className="mt-1 font-mono text-xs text-cyan-400 break-all leading-normal">
-                  ⛓{" "}
-                  <a
-                    href={`https://testnet.cspr.live/transaction/${banner.revocationDeployHash.replace(/^0x/, "")}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="underline hover:text-cyan-300 break-all"
-                  >
-                    revoke deploy/{banner.revocationDeployHash}
-                  </a>
+                <p className="mt-1 font-mono text-xs text-amber-400/90 break-all leading-normal">
+                  ⛓ <span className="text-amber-300">simulated · not broadcast</span>{" "}
+                  <span className="text-slate-500">revoke/{banner.revocationDeployHash}</span>
                 </p>
               )}
+              <p className="mt-1 font-mono text-xs text-cyan-400 break-all leading-normal">
+                ⛓{" "}
+                <a
+                  href="https://testnet.cspr.live/transaction/89db2b3bc80c2e95966e82456ad6f2a3fe6c49a6ce3cc47155f9e44dbf50b7cc"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-cyan-300 break-all"
+                >
+                  confirmed on-chain revoke ↗
+                </a>
+              </p>
             </div>
           </div>
         </div>
