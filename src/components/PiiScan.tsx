@@ -2,7 +2,7 @@
 
 export function PiiScan() {
   return (
-    <section className="mt-8">
+    <section id="pii-scan" className="mt-8 scroll-mt-6">
       <div className="rounded-lg border border-green-500/20 bg-green-500/5 p-4">
         <div className="flex items-center gap-3">
           <span className="text-lg text-green-400">🔒</span>
