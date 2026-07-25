@@ -59,7 +59,14 @@ export function ComplianceConsole({ initialSnapshot }: { initialSnapshot: Snapsh
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [banner, setBanner] = useState<HolderView | null>(null);
-  
+  const [rootCopied, setRootCopied] = useState(false);
+
+  const copyRoot = useCallback(() => {
+    void navigator.clipboard.writeText(snapshot.root);
+    setRootCopied(true);
+    setTimeout(() => setRootCopied(false), 1500);
+  }, [snapshot.root]);
+
   // Game feel / juice effects
   const [shouldShake, setShouldShake] = useState(false);
   const [shouldFlash, setShouldFlash] = useState(false);
@@ -119,7 +126,7 @@ export function ComplianceConsole({ initialSnapshot }: { initialSnapshot: Snapsh
   const watchId = snapshot.watchHolderId;
 
   return (
-    <section className={`mt-12 relative transition-all ${shouldShake ? "animate-shake" : ""}`}>
+    <section id="compliance-console" className={`mt-12 relative transition-all scroll-mt-6 ${shouldShake ? "animate-shake" : ""}`}>
       {shouldFlash && (
         <div className="absolute inset-0 z-50 pointer-events-none rounded-2xl bg-red-500/10 border-2 border-red-500/40 animate-flashRed" />
       )}
@@ -136,7 +143,15 @@ export function ComplianceConsole({ initialSnapshot }: { initialSnapshot: Snapsh
       {/* on-chain root + monitor status */}
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
         <div className="min-w-0 rounded-lg p-4 glass-elevated">
-          <p className="text-[10px] uppercase tracking-widest text-slate-500">On-chain Merkle root</p>
+          <div className="flex items-center justify-between gap-2">
+            <p className="text-[10px] uppercase tracking-widest text-slate-500">On-chain Merkle root</p>
+            <button
+              onClick={copyRoot}
+              className="shrink-0 text-[10px] uppercase tracking-wider text-slate-500 transition-colors hover:text-cyan-400"
+            >
+              {rootCopied ? "copied ✓" : "copy"}
+            </button>
+          </div>
           <p key={snapshot.root} className="mt-1 break-all font-mono text-xs text-cyan-400 animate-slideDown">
             {snapshot.root}
           </p>
