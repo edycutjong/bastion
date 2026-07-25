@@ -1,9 +1,9 @@
 // The Casper-only surface this gateway is built on.
 
 const TOOLS = [
-  { 
-    tool: "casper-eip-712 Signature Scheme", 
-    usage: "Enables gasless credential issuance. The holder's PII remains strictly off-chain while producing a cryptographically secure signature matching EIP-712 parameters mapped to Casper account hashes.",
+  {
+    tool: "casper-js-sdk (PEM) — Credential Attestation",
+    usage: "Enables gasless credential issuance with the holder's PII kept strictly off-chain. The attestation is a SHA-256 stand-in for EIP-712 typed-data in the demo, signed and broadcast with the backend casper-js-sdk PEM key — no browser wallet required.",
     badge: "Cryptography"
   },
   { 
@@ -21,10 +21,10 @@ const TOOLS = [
     usage: "Implements pay-per-check proof verification via CEP-18 token flows, ensuring that high-throughput verification queries are monetized and settled on Casper with cryptographic proof of payment.",
     badge: "Monetization"
   },
-  { 
-    tool: "CSPR.cloud Streaming Engine", 
-    usage: "Enables sub-second reactive auditing by streaming blockchain events. The autonomous monitor listens for compliance alerts and instantly triggers updates back to the registry.",
-    badge: "Streaming Monitor"
+  {
+    tool: "CSPR.cloud — RPC + x402 Facilitator",
+    usage: "Serves as the Casper RPC node the autonomous agent broadcasts through, and backs the x402 facilitator endpoint. The compliance monitor follows a streaming pattern, driven by a deterministic simulated risk feed in the demo.",
+    badge: "Node + Monitor"
   },
 ];
 

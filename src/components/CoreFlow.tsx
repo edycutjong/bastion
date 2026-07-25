@@ -3,8 +3,8 @@
 const FLOW = [
   "User submits documents off-chain — PII never touches the chain",
   "Verifier agent reviews and decides (approve / decline)",
-  "Gasless EIP-712 credential issued + Poseidon commitment inserted into on-chain Merkle set",
-  "Holder generates a Groth16 ZK proof of “valid & non-revoked” in-browser — secret never leaves the device",
+  "Gasless EIP-712-style credential (SHA-256 mock) issued + commitment inserted into on-chain Merkle set",
+  "Holder generates a Groth16-shaped ZK proof (simulated) of “valid & non-revoked” — secret never leaves the device",
   "Gated pool admits the holder (proof verified against the on-chain Merkle root)",
   "Monitor agent detects a risk signal (sanctions hit / anomaly)",
   "Autonomous REVOCATION — nullifier published, root updated, proof stops verifying, pool ejects",
