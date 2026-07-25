@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.2.0](../../compare/v2.1.2...v2.2.0) (2026-07-25)
+
+### 🚀 Features
+
+- **ui:** hero CTAs, Merkle-root copy button, honest ZK subhead (5a21c7d)
+
+### 📝 Documentation
+
+- refresh product screenshots (retina, gap-free, no dev badge) (51aa746)
+
 ## [2.1.2](../../compare/v2.1.1...v2.1.2) (2026-07-25)
 
 ### 🐛 Bug Fixes
