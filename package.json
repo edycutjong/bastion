@@ -42,7 +42,7 @@
     "@anthropic-ai/sdk": "^0.115.0",
     "casper-js-sdk": "^5.0.12",
     "ethers": "^6",
-    "next": "16.2.11",
+    "next": "16.2.12",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },
@@ -51,7 +51,7 @@
     "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.62.0",
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^26",
+    "@types/node": "^26.1.2",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitest/coverage-v8": "^4.1.10",
